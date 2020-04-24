@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import emoji from "emoji-dictionary";
 
 import "./Card.css";
+import Axios from "axios";
 
 const Card = (props) => {
   return (

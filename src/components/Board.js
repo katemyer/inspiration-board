@@ -7,19 +7,39 @@ import Card from "./Card";
 import NewCardForm from "./NewCardForm";
 import CARD_DATA from "../data/card-data.json";
 
-const Board = () => {
-  const boardComponents = CARD_DATA.cards.map((card, i) => {
+class Board extends Component {
+  state = {
+    boards: [],
+  };
+
+  componenentDidMount() {
+    axios.get(`https://inspiration-board.herokuapp.com/boards`).then((res) => {
+      console.log(res);
+      this.setState({ boards: res.data });
+    });
+  }
+  makeBoard = () => {
+    const boardComponents = CARD_DATA.cards.map((card, i) => {
+      return (
+        <Card
+          cardText={card.Text}
+          cardEmoji={card.emoji}
+          id={card.id}
+          key={i}
+        />
+      );
+    });
+    return boardComponents;
+  };
+  render() {
     return (
-      <Card
-        cardMessage={card.message}
-        cardEmoji={card.emoji}
-        id={card.id}
-        key={i}
-      />
+      <div>
+        <section className="board">{this.makeBoard()}</section>
+      </div>
     );
-  });
-  return boardComponents;
-};
-Board.propTypes = {};
+  }
+}
+
+// Board.propTypes = {};
 
 export default Board;
