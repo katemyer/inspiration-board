@@ -1,19 +1,23 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import emoji from 'emoji-dictionary';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import emoji from "emoji-dictionary";
 
-import './Card.css';
+import "./Card.css";
 
-const Card = () => {
+const Card = (props) => {
   return (
     <div className="card">
-      Card
+      Message: <br />
+      {props.text} <br />
+      Emoji: <br />
+      {props.emoji} <br />
     </div>
-  )
-}
+  );
+};
 
 Card.propTypes = {
-
+  message: PropTypes.string.isRequired,
+  emoji: PropTypes.string,
 };
 
 export default Card;
