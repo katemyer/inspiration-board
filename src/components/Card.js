@@ -8,17 +8,20 @@ import Axios from "axios";
 const Card = (props) => {
   return (
     <div className="card">
-      Message: <br />
-      {props.text} <br />
-      Emoji: <br />
-      {props.emoji} <br />
+      <section className="card_content">
+        <section className="card__content-text"> {props.cardText} </section>
+        <section className="card__content-emoji">
+          {emoji.getUnicode(`${props.cardEmoji}`)}
+        </section>
+        {props.cardEmoji} <br />
+      </section>
     </div>
   );
 };
 
 Card.propTypes = {
-  message: PropTypes.string.isRequired,
-  emoji: PropTypes.string,
+  cardText: PropTypes.string.isRequired,
+  cardEmoji: PropTypes.string,
 };
 
 export default Card;
