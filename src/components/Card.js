@@ -9,9 +9,9 @@ const Card = (props) => {
   return (
     <div className="card">
       <section className="card_content">
-        <p className="card__content-text"> {props.cardText} </p>
+        <p className="card__content-text"> {props.text} </p>
         <section className="card__content-emoji">
-          {emoji.getUnicode(`${props.cardEmoji}`)}
+          {emoji.getUnicode(`${props.emoji}`)}
         </section>
       </section>
     </div>
@@ -20,8 +20,8 @@ const Card = (props) => {
 
 Card.propTypes = {
   id: PropTypes.number.isRequired,
-  cardText: PropTypes.string.isRequired,
-  cardEmoji: PropTypes.string,
+  text: PropTypes.string.isRequired,
+  emoji: PropTypes.string,
 };
 
 export default Card;
