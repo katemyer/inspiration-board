@@ -1,55 +1,52 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
 import "./Board.css";
 import Card from "./Card";
-import NewCardForm from "./NewCardForm";
-import CARD_DATA from "../data/card-data.json";
+// import NewCardForm from "./NewCardForm";
+// import CARD_DATA from "../data/card-data.json";
 
-class Board extends Component {
-  constructor(props) {
-    super(props);
+const Board = (props) => {
+  const API_URl_BASE = `${props.url}/${props.boardName}`;
 
-    this.state = {
-      cards: [],
-      error: "",
-    };
-  }
+  const [cards, setCards] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  componenentDidMount() {
+  useEffect(() => {
     axios
-      .get(`${this.props.url}/${this.props.boardName}/cards`)
+      .get(API_URl_BASE)
       .then((res) => {
-        this.setState({
-          cards: res.data,
-        });
+        const apiCardsData = res.data;
+        console.log(apiCardsData);
+        setCards(apiCardsData);
       })
       .catch((error) => {
-        this.setState({ error: error.message });
+        setErrorMessage(error.message);
+        console.log(error.message);
       });
-  }
-  makeBoard = () => {
-    const boardComponents = this.state.cards.map((card, i) => {
+  }, [props.boardName]);
+
+  const cardComponents = () => {
+    return cards.map((card) => {
       return (
-        <Card
-          id={card.card.id}
-          cardText={card.card.text}
-          cardEmoji={card.card.emoji}
-          key={i}
-        />
+        <section key={card.id}>
+          <Card id={card.id} text={card.text} emoji={card.emoji} />
+        </section>
       );
     });
-    return boardComponents;
   };
-  render() {
-    return (
-      <div>
-        <section className="board">{this.makeBoard()}</section>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="validation-errors-display">
+      {errorMessage && (
+        <div className="validation-errors-display_list">
+          <h2>{errorMessage}</h2>
+        </div>
+      )}
+      <section className="board">{cardComponents}</section>
+    </div>
+  );
+};
 
 Board.propTypes = {
   url: PropTypes.string.isRequired,
