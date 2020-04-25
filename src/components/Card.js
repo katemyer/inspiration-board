@@ -9,7 +9,7 @@ const Card = (props) => {
   return (
     <div className="card">
       <section className="card_content">
-        <section className="card__content-text"> {props.cardText} </section>
+        <p className="card__content-text"> {props.cardText} </p>
         <section className="card__content-emoji">
           {emoji.getUnicode(`${props.cardEmoji}`)}
         </section>
@@ -20,6 +20,7 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
+  id: PropTypes.number.isRequired,
   cardText: PropTypes.string.isRequired,
   cardEmoji: PropTypes.string,
 };

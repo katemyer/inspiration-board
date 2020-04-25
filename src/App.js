@@ -3,7 +3,7 @@ import "./App.css";
 import Board from "./components/Board";
 
 const App = () => {
-  const [boardName, setBoardName] = useState("ada-Lovelace");
+  const [boardName, setBoardName] = useState("shonds-dubs");
   {
     return (
       <section>
