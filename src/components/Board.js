@@ -13,11 +13,12 @@ const Board = (props) => {
   const [cards, setCards] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  //populate cards
   useEffect(() => {
-    axios
-      .get(API_URl_BASE)
+    axios.get(API_URl_BASE + "/cards") 
       .then((res) => {
         const apiCardsData = res.data;
+        console.log(res)
         console.log(apiCardsData);
         setCards(apiCardsData);
       })
@@ -28,14 +29,16 @@ const Board = (props) => {
   }, [props.boardName]);
 
   const cardComponents = () => {
-    return cards.map((card) => {
+    return cards.map((cardh) => {
+      console.log(cardh)
       return (
-        <section key={card.id}>
-          <Card id={card.id} text={card.text} emoji={card.emoji} />
+        <section key={cardh.card.id}>
+          <Card id={cardh.card.id} text={cardh.card.text} emoji={cardh.card.emoji} />
         </section>
       );
     });
   };
+
   return (
     <div className="validation-errors-display">
       {errorMessage && (
@@ -43,7 +46,8 @@ const Board = (props) => {
           <h2>{errorMessage}</h2>
         </div>
       )}
-      <section className="board">{cardComponents}</section>
+      {/* add () to call the fuction, without () is only referencing it */}
+      <section className="board">{cardComponents()}</section> 
     </div>
   );
 };
