@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import emoji from "emoji-dictionary";
 
@@ -28,7 +28,7 @@ const Card = (props) => {
 
 Card.propTypes = {
   id: PropTypes.number.isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   emoji: PropTypes.string,
 };
 
