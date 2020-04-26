@@ -1,6 +1,22 @@
 {
-  "main.css": "static/css/main.a745919b.css",
-  "main.css.map": "static/css/main.a745919b.css.map",
-  "main.js": "static/js/main.80faf53e.js",
-  "main.js.map": "static/js/main.80faf53e.js.map"
+  "files": {
+    "main.css": "/Shonda860/inspiration-board/static/css/main.6a228305.chunk.css",
+    "main.js": "/Shonda860/inspiration-board/static/js/main.ec39dfd2.chunk.js",
+    "main.js.map": "/Shonda860/inspiration-board/static/js/main.ec39dfd2.chunk.js.map",
+    "runtime-main.js": "/Shonda860/inspiration-board/static/js/runtime-main.d20a99ef.js",
+    "runtime-main.js.map": "/Shonda860/inspiration-board/static/js/runtime-main.d20a99ef.js.map",
+    "static/js/2.4de512e1.chunk.js": "/Shonda860/inspiration-board/static/js/2.4de512e1.chunk.js",
+    "static/js/2.4de512e1.chunk.js.map": "/Shonda860/inspiration-board/static/js/2.4de512e1.chunk.js.map",
+    "index.html": "/Shonda860/inspiration-board/index.html",
+    "precache-manifest.a3ec3749660f417b4f7f6e0b28647a47.js": "/Shonda860/inspiration-board/precache-manifest.a3ec3749660f417b4f7f6e0b28647a47.js",
+    "service-worker.js": "/Shonda860/inspiration-board/service-worker.js",
+    "static/css/main.6a228305.chunk.css.map": "/Shonda860/inspiration-board/static/css/main.6a228305.chunk.css.map",
+    "static/js/2.4de512e1.chunk.js.LICENSE.txt": "/Shonda860/inspiration-board/static/js/2.4de512e1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d20a99ef.js",
+    "static/js/2.4de512e1.chunk.js",
+    "static/css/main.6a228305.chunk.css",
+    "static/js/main.ec39dfd2.chunk.js"
+  ]
 }
