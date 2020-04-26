@@ -15,12 +15,12 @@ const Card = (props) => {
 
   return (
     <div className="card">
-      <section className="card_content">
+      <section className="card__content">
         <p className="card__content-text"> {props.text} </p>
         <section className="card__content-emoji">
           {emoji.getUnicode(`${props.emoji}`)}
         </section>
-        <button onClick={onClickGetCardId}>Delete</button>
+        <button className="card__delete" onClick={onClickGetCardId}>Delete</button>
       </section>
     </div>
   );
