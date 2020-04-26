@@ -1,5 +1,5 @@
 .card {
-  background-color: #F4FF81;
+  background-color: rgb(255, 179, 129);
 
   padding: 1em 0;
   margin: 0.5rem;
@@ -30,18 +30,21 @@
 .card__content-text {
   text-overflow: ellipsis;
   overflow: hidden;
+  font-family: "Permanent Marker", Helvetica, sans-serif;
 }
 
 .card__content-emoji {
   font-size: 3rem;
 }
 
-.card__content-text, .card__content-emoji {
+.card__content-text,
+.card__content-emoji {
   padding: 0;
   margin: 0;
 }
 
 .card__delete {
   align-self: start;
-  font-family: 'Permanent Marker', Helvetica, sans-serif;
+  font-family: "Permanent Marker", Helvetica, sans-serif;
+  text-align: center;
 }

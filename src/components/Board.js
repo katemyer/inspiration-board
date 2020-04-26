@@ -28,14 +28,13 @@ const Board = (props) => {
   const cardComponents = () => {
     return cards.map((cardh) => {
       return (
-        <section key={cardh.card.id}>
-          <Card
-            id={cardh.card.id}
-            onDeleteClick={onDeleteClick}
-            text={cardh.card.text}
-            emoji={cardh.card.emoji}
-          />
-        </section>
+        <Card
+          key={cardh.card.id}
+          id={cardh.card.id}
+          onDeleteClick={onDeleteClick}
+          text={cardh.card.text}
+          emoji={cardh.card.emoji}
+        />
       );
     });
   };
@@ -67,7 +66,7 @@ const Board = (props) => {
         getCards();
       })
       .catch((error) => {
-        //setErrorMessage(error.message);
+        setErrorMessage(error.message);
       });
   };
   return (
@@ -78,12 +77,9 @@ const Board = (props) => {
         </div>
       )}
       <div>
-        <section className="board">
-          <NewCardForm onAddCard={onAddCard} />
-          {/* add () to call the fuction, without () is only referencing it */}
-          {cardComponents()}
-        </section>
+        <NewCardForm onAddCard={onAddCard} />
       </div>
+      <div className="board">{cardComponents()}</div>
     </div>
   );
 };
