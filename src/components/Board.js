@@ -8,14 +8,13 @@ import Card from "./Card";
 // import CARD_DATA from "../data/card-data.json";
 
 const Board = (props) => {
-
   const [cards, setCards] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
   //populate cards on start up
   useEffect(() => {
     axios
-      .get(`${props.url}boards/${props.boardName}/cards`) 
+      .get(`${props.url}boards/${props.boardName}/cards`)
       .then((res) => {
         const apiCardsData = res.data;
         //console.log(res)
@@ -32,9 +31,13 @@ const Board = (props) => {
     return cards.map((cardh) => {
       //console.log(cardh)
       return (
-        <section key={cardh.card.id}>
-          <Card id={cardh.card.id} onDeleteClick={onDeleteClick} text={cardh.card.text} emoji={cardh.card.emoji} />
-        </section>
+        <Card
+          key={cardh.card.id}
+          id={cardh.card.id}
+          onDeleteClick={onDeleteClick}
+          text={cardh.card.text}
+          emoji={cardh.card.emoji}
+        />
       );
     });
   };
@@ -49,42 +52,42 @@ const Board = (props) => {
   //step 6: complete onDeleteClick function
   const onDeleteClick = (id) => {
     // post call to delete card via id
-    console.log("Deleting")
+    console.log("Deleting");
     axios
-    //example url for delete cards: https://inspiration-board.herokuapp.com/cards/6336
-    //Note A. delete card from API FIRST
-    .delete(`${props.url}cards/${id}`)
-    .then((res) => {
-      const apiDeleteData = res.data;
-      console.log("Deleted")
-      console.log(res)
-      console.log(apiDeleteData);
-      // Step 7. Get all cards via api so it reloads the page after deleting a card
-      //Note B. If delete is successul, GET the cards from API
-      console.log("Getting")
-      axios.get(`${props.url}boards/${props.boardName}/cards`)
-        .then((res) => {
-          console.log("Getted")
-          const apiCardsData = res.data;
-          //console.log(res)
-          //console.log(apiCardsData);
-          console.log("Reloading")
-          //Note C. if GET cards is successful, update front-end here
-          setCards(apiCardsData);
-          console.log("Reloaded")
-        })
-        .catch((error) => {
-          setErrorMessage(error.message);
-          console.log(error.message);
-        });
-    })
-    .catch((error) => {
-      setErrorMessage(error.message);
-      console.log(error.message);
-    });
+      //example url for delete cards: https://inspiration-board.herokuapp.com/cards/6336
+      //Note A. delete card from API FIRST
+      .delete(`${props.url}cards/${id}`)
+      .then((res) => {
+        const apiDeleteData = res.data;
+        console.log("Deleted");
+        console.log(res);
+        console.log(apiDeleteData);
+        // Step 7. Get all cards via api so it reloads the page after deleting a card
+        //Note B. If delete is successul, GET the cards from API
+        console.log("Getting");
+        axios
+          .get(`${props.url}boards/${props.boardName}/cards`)
+          .then((res) => {
+            console.log("Getted");
+            const apiCardsData = res.data;
+            //console.log(res)
+            //console.log(apiCardsData);
+            console.log("Reloading");
+            //Note C. if GET cards is successful, update front-end here
+            setCards(apiCardsData);
+            console.log("Reloaded");
+          })
+          .catch((error) => {
+            setErrorMessage(error.message);
+            console.log(error.message);
+          });
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+        console.log(error.message);
+      });
+  };
 
-  }
-  
   return (
     <div className="validation-errors-display">
       {errorMessage && (
@@ -93,7 +96,7 @@ const Board = (props) => {
         </div>
       )}
       {/* add () to call the fuction, without () is only referencing it */}
-      <section className="board">{cardComponents()}</section> 
+      <section className="board">{cardComponents()}</section>
     </div>
   );
 };
