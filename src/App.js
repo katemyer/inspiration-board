@@ -4,21 +4,19 @@ import Board from "./components/Board";
 
 const App = () => {
   const [boardName, setBoardName] = useState("shonds-dubs");
-  {
-    return (
-      <section>
-        <header className="header">
-          <h1 className="header__h1">
-            <span className="header__text">Inspiration Board</span>
-          </h1>
-        </header>
-        <Board
-          url="https://inspiration-board.herokuapp.com/boards/"
-          boardName={boardName}
-        />
-      </section>
-    );
-  }
+  return (
+    <section>
+      <header className="header">
+        <h1 className="header__h1">
+          <span className="header__text">Inspiration Board</span>
+        </h1>
+      </header>
+      <Board
+        url="https://inspiration-board.herokuapp.com/"
+        boardName={boardName}
+      />
+    </section>
+  );
 };
 
 export default App;
