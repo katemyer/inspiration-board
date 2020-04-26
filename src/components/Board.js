@@ -4,6 +4,7 @@ import axios from "axios";
 
 import "./Board.css";
 import Card from "./Card";
+import NewCardForm from "./NewCardForm";
 // import NewCardForm from "./NewCardForm";
 // import CARD_DATA from "../data/card-data.json";
 
@@ -88,6 +89,22 @@ const Board = (props) => {
       });
   };
 
+  const onFormSubmit = (newCardText, newCardEmoji) => {
+    axios
+      .post(`${props.url}boards/${props.boardName}/cards`, {
+        text: newCardText,
+        emoji: newCardEmoji,
+      })
+      .then((res) => {
+        const updatedCardList = [res.data, ...cards];
+        setCards(updatedCardList);
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+        console.log(error.message);
+      });
+  };
+
   return (
     <div className="validation-errors-display">
       {errorMessage && (
@@ -96,7 +113,9 @@ const Board = (props) => {
         </div>
       )}
       {/* add () to call the fuction, without () is only referencing it */}
-      <section className="board">{cardComponents()}</section>
+      <section className="board">
+        {cardComponents()} <NewCardForm onFormSubmit={onFormSubmit} />
+      </section>
     </div>
   );
 };
