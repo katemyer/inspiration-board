@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import emoji from "emoji-dictionary";
 
 import "./Card.css";
-import axios from "axios";
 //import Axios from "axios";
 
 const Card = (props) => {
@@ -11,8 +10,7 @@ const Card = (props) => {
   //*need to get id from card
   const onClickGetCardId = () => {
     //already have this id={cardh.card.id},  accessible at board.js, so it's a prop
-    const id = props.id
-    props.onDeleteClick(id)
+    props.onDeleteClick(props.id)
   }
 
   return (
