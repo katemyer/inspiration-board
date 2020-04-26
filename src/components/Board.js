@@ -4,7 +4,7 @@ import axios from "axios";
 
 import "./Board.css";
 import Card from "./Card";
-// import NewCardForm from "./NewCardForm";
+import NewCardForm from "./NewCardForm";
 // import CARD_DATA from "../data/card-data.json";
 
 const Board = (props) => {
@@ -12,20 +12,28 @@ const Board = (props) => {
   const [cards, setCards] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  //function for GET and reload page used for wave 3
+  const getCards = () => {
+    axios.get(`${props.url}boards/${props.boardName}/cards`)
+    .then((res) => {
+      console.log("Getted")
+      const apiCardsData = res.data;
+      //console.log(res)
+      //console.log(apiCardsData);
+      console.log("Reloading")
+      //Note C. if GET cards is successful, update front-end here
+      setCards(apiCardsData);
+      console.log("Reloaded")
+    })
+    .catch((error) => {
+      setErrorMessage(error.message);
+      console.log(error.message);
+    });
+  }
+
   //populate cards on start up
   useEffect(() => {
-    axios
-      .get(`${props.url}boards/${props.boardName}/cards`) 
-      .then((res) => {
-        const apiCardsData = res.data;
-        //console.log(res)
-        //console.log(apiCardsData);
-        setCards(apiCardsData);
-      })
-      .catch((error) => {
-        setErrorMessage(error.message);
-        console.log(error.message);
-      });
+    getCards()
   }, [props.boardName]);
 
   const cardComponents = () => {
@@ -39,6 +47,7 @@ const Board = (props) => {
     });
   };
 
+  //wave 3
   //name of function onDeleteClick = delete a card, need to pass in id
   //Step 1: get the id from the card component in card.js *go see card.js
   //Step 2: to get to id, need to make a function in the card.js = getCardId()
@@ -62,21 +71,7 @@ const Board = (props) => {
       // Step 7. Get all cards via api so it reloads the page after deleting a card
       //Note B. If delete is successul, GET the cards from API
       console.log("Getting")
-      axios.get(`${props.url}boards/${props.boardName}/cards`)
-        .then((res) => {
-          console.log("Getted")
-          const apiCardsData = res.data;
-          //console.log(res)
-          //console.log(apiCardsData);
-          console.log("Reloading")
-          //Note C. if GET cards is successful, update front-end here
-          setCards(apiCardsData);
-          console.log("Reloaded")
-        })
-        .catch((error) => {
-          setErrorMessage(error.message);
-          console.log(error.message);
-        });
+      getCards()
     })
     .catch((error) => {
       setErrorMessage(error.message);
@@ -84,7 +79,23 @@ const Board = (props) => {
     });
 
   }
-  
+    //wave 3: adding Card fx
+    const onAddCard = (formFields) => {
+      //do API post call: https://alligator.io/react/axios-react/
+      // URL POST: https://inspiration-board.herokuapp.com/boards/shonds_dubs/cards
+      //(`${props.url}boards/${props.boardName}/cards`) 
+      axios.post(`https://inspiration-board.herokuapp.com/boards/shonds-dubs/cards`, formFields )
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+          getCards()
+        })
+        .catch((error) => {
+          //setErrorMessage(error.message);
+          console.log(error.message);
+        });
+    }
+    
   return (
     <div className="validation-errors-display">
       {errorMessage && (
@@ -92,8 +103,12 @@ const Board = (props) => {
           <h2>{errorMessage}</h2>
         </div>
       )}
+      <NewCardForm 
+        onAddCard={onAddCard}
+      />
       {/* add () to call the fuction, without () is only referencing it */}
-      <section className="board">{cardComponents()}</section> 
+      <section className="board">{cardComponents()}</section>
+      
     </div>
   );
 };
