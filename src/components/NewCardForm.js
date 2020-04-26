@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import emoji from "emoji-dictionary";
 import "./NewCardForm.css";
-
 const EMOJI_LIST = [
   "",
   "heart_eyes",
@@ -11,61 +10,88 @@ const EMOJI_LIST = [
   "sparkling_heart",
   "heart_eyes_cat",
   "dog",
-  "grin",
 ];
-
+//Create a NewCardForm component which will add new cards to the board and trigger POST requests to the API to create a card on the API.
 const NewCardForm = (props) => {
-  const [newCardText, setNewCardText] = useState([]);
-  const [newCardEmoji, setNewCardEmoji] = useState([]);
-  const emojiValue = [emoji.getUnicode(`${newCardEmoji}`)];
-
-  const addTextChange = (event) => {
-    setNewCardText(event.target.value);
+  //STATE
+  const [formFields, setFormFields] = useState({
+    text: "",
+    emoji: "",
+  });
+  // event handler
+  const onInputChange = (event) => {
+    const newFormFields = {
+      ...formFields,
+    };
+    newFormFields[event.target.name] = event.target.value;
+    setFormFields(newFormFields);
+    console.log(newFormFields);
   };
-  const addEmojiChange = (event) => {
-    setNewCardEmoji(event.target.value);
-  };
-
-  const onSubmit = (event) => {
+  //submitting form "ok"
+  const onFormSubmit = (event) => {
     event.preventDefault();
-    props.onFormSubmit(newCardText, newCardEmoji);
-    setNewCardText("");
-    setNewCardEmoji("");
+    //console.log(event.target)
+    props.onAddCard(formFields);
+    //resets fields
+    setFormFields({
+      text: "",
+      emoji: "",
+    });
   };
-
+  //https://stackoverflow.com/questions/28329382/understanding-unique-keys-for-array-children-in-react-js
+  //error for child needing unique key. when added key={index} error went away
+  const generateEmojiOptions = () => {
+    return EMOJI_LIST.map((emoji, index) => {
+      return (
+        <option key={index} value={emoji}>
+          {emoji}
+        </option>
+      );
+    });
+  };
   return (
-    <div className="new-card-form">
-      <h3 className="new-card-form__header">Make a New Sticky</h3>
-      <form className="new-card-form__form">
-        <div>
-          <input
-            className="new-card-form__form-textarea"
-            name="text"
-            onChange={addTextChange}
-            value={newCardText}
-            placeholder="Say Something"
-            type="text"
-          />
-          <input
-            className="new-card-form__form-textarea"
+    <form
+      className="new-card-form"
+      onSubmit={onFormSubmit}
+      data-testid="NewCardForm--form"
+    >
+      <div>
+        <label className="new-card-form__form-label" htmlFor="text">
+          Text:
+        </label>
+        <input
+          id="text"
+          name="text"
+          value={formFields.text}
+          onChange={onInputChange}
+          className=""
+        />
+      </div>
+      <div>
+        <label className="new-card-form__form-label" htmlFor="emoji">
+          Emoji:
+          <select
+            id="emoji"
             name="emoji"
-            onChange={addEmojiChange}
-            value={newCardEmoji}
-            placeholder="Say Something Emoji's"
-            type="text"
-          />
-          <div>
-            <button className="new-card-form__form-button" onClick={onSubmit}>
-              Post!
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+            value={formFields.emoji}
+            onChange={onInputChange}
+          >
+            {generateEmojiOptions()}
+          </select>
+        </label>
+        {/* <input
+          id="emoji"
+          name="emoji"
+          value={formFields.emoji}
+          onChange={onInputChange}
+          className=""
+        /> */}
+      </div>
+      <input type="submit" value="Add Card" />
+    </form>
   );
 };
-
 NewCardForm.propTypes = {
-  onFormSubmit: PropTypes.func.isRequired,
+  onAddCard: PropTypes.func.isRequired,
 };
 export default NewCardForm;
