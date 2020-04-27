@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/Shonda860/inspiration-board/static/css/main.6a228305.chunk.css",
-    "main.js": "/Shonda860/inspiration-board/static/js/main.ec39dfd2.chunk.js",
-    "main.js.map": "/Shonda860/inspiration-board/static/js/main.ec39dfd2.chunk.js.map",
-    "runtime-main.js": "/Shonda860/inspiration-board/static/js/runtime-main.d20a99ef.js",
-    "runtime-main.js.map": "/Shonda860/inspiration-board/static/js/runtime-main.d20a99ef.js.map",
-    "static/js/2.4de512e1.chunk.js": "/Shonda860/inspiration-board/static/js/2.4de512e1.chunk.js",
-    "static/js/2.4de512e1.chunk.js.map": "/Shonda860/inspiration-board/static/js/2.4de512e1.chunk.js.map",
-    "index.html": "/Shonda860/inspiration-board/index.html",
-    "precache-manifest.a3ec3749660f417b4f7f6e0b28647a47.js": "/Shonda860/inspiration-board/precache-manifest.a3ec3749660f417b4f7f6e0b28647a47.js",
-    "service-worker.js": "/Shonda860/inspiration-board/service-worker.js",
-    "static/css/main.6a228305.chunk.css.map": "/Shonda860/inspiration-board/static/css/main.6a228305.chunk.css.map",
-    "static/js/2.4de512e1.chunk.js.LICENSE.txt": "/Shonda860/inspiration-board/static/js/2.4de512e1.chunk.js.LICENSE.txt"
+    "main.css": "/inspiration-board/static/css/main.6a228305.chunk.css",
+    "main.js": "/inspiration-board/static/js/main.cdbc97e0.chunk.js",
+    "main.js.map": "/inspiration-board/static/js/main.cdbc97e0.chunk.js.map",
+    "runtime-main.js": "/inspiration-board/static/js/runtime-main.b2c7c5f9.js",
+    "runtime-main.js.map": "/inspiration-board/static/js/runtime-main.b2c7c5f9.js.map",
+    "static/js/2.4de512e1.chunk.js": "/inspiration-board/static/js/2.4de512e1.chunk.js",
+    "static/js/2.4de512e1.chunk.js.map": "/inspiration-board/static/js/2.4de512e1.chunk.js.map",
+    "index.html": "/inspiration-board/index.html",
+    "precache-manifest.2867e5fdf9a8513492b026c6f4bfd617.js": "/inspiration-board/precache-manifest.2867e5fdf9a8513492b026c6f4bfd617.js",
+    "service-worker.js": "/inspiration-board/service-worker.js",
+    "static/css/main.6a228305.chunk.css.map": "/inspiration-board/static/css/main.6a228305.chunk.css.map",
+    "static/js/2.4de512e1.chunk.js.LICENSE.txt": "/inspiration-board/static/js/2.4de512e1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.d20a99ef.js",
+    "static/js/runtime-main.b2c7c5f9.js",
     "static/js/2.4de512e1.chunk.js",
     "static/css/main.6a228305.chunk.css",
-    "static/js/main.ec39dfd2.chunk.js"
+    "static/js/main.cdbc97e0.chunk.js"
   ]
 }
