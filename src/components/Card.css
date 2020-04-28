@@ -1,5 +1,5 @@
 .card {
-  background-color: rgb(255, 179, 129);
+  background-color: rgb(129, 226, 255);
 
   padding: 1em 0;
   margin: 0.5rem;
@@ -30,7 +30,7 @@
 .card__content-text {
   text-overflow: ellipsis;
   overflow: hidden;
-  font-family: "Permanent Marker", Helvetica, sans-serif;
+  font-family: "Blippo", Helvetica, sans-serif;
 }
 
 .card__content-emoji {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import "./Board.css";
@@ -9,7 +9,7 @@ const Board = (props) => {
   const [cards, setCards] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
   //function for GET and reload page used for wave 3
-  const getCards = () => {
+  const getCards = useCallback(() => {
     axios
       .get(`${props.url}boards/${props.boardName}/cards`)
       .then((res) => {
@@ -20,11 +20,12 @@ const Board = (props) => {
         setErrorMessage(error.message);
         console.log(error.message);
       });
-  };
+  }, [props.boardName,props.ur])
   //populate cards on start up
   useEffect(() => {
     getCards();
-  }, [props.boardName]);
+  }, [getCards]);
+
   const cardComponents = () => {
     return cards.map((cardh) => {
       return (
@@ -42,7 +43,6 @@ const Board = (props) => {
     // post call to delete card via id
 
     axios
-
       .delete(`${props.url}cards/${id}`)
       .then((res) => {
         const apiDeleteData = res.data;
@@ -58,10 +58,7 @@ const Board = (props) => {
     //do API post call: https://alligator.io/react/axios-react/
 
     axios
-      .post(
-        `https://inspiration-board.herokuapp.com/boards/shonds-dubs/cards`,
-        formFields
-      )
+      .post(`${props.url}/boards/${props.boardName}/cards`, formFields)
       .then((res) => {
         getCards();
       })

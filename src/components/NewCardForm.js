@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import emoji from "emoji-dictionary";
+//import emoji from "emoji-dictionary";
 import "./NewCardForm.css";
 const EMOJI_LIST = [
   "",
@@ -10,6 +10,16 @@ const EMOJI_LIST = [
   "sparkling_heart",
   "heart_eyes_cat",
   "dog",
+  "coffee",
+  "smiley",
+  "grimacing",
+  "poop",
+  "joy",
+  "sob",
+  "wink", 
+  "face_with_rolling_eyes",
+  "zap",
+  "100"
 ];
 //Create a NewCardForm component which will add new cards to the board and trigger POST requests to the API to create a card on the API.
 const NewCardForm = (props) => {
@@ -23,7 +33,7 @@ const NewCardForm = (props) => {
     const newFormFields = {
       ...formFields,
     };
-    newFormFields[event.target.name] = event.target.value;
+    newFormFields[event.target.name] = event.target.value; //linked in line 66
     setFormFields(newFormFields);
     console.log(newFormFields);
   };
@@ -49,6 +59,8 @@ const NewCardForm = (props) => {
       );
     });
   };
+
+  
   return (
     <form
       className="new-card-form"
